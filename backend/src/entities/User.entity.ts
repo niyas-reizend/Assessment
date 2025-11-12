@@ -1,37 +1,35 @@
 import { Exclude } from "class-transformer";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import {SalesEntry} from "./SalesEntry.entity"
+import { Sales } from "./Sales.entity";
 export enum UserRole {
-    USER = "user",
-    ADMIN = "admin"
+  USER = "user",
+  ADMIN = "admin",
 }
 
 @Entity()
 export class User {
+  @PrimaryGeneratedColumn("uuid")
+  user_id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    user_id: string
+  @Exclude()
+  @Column()
+  password: string;
 
-    @Exclude()
-    @Column()
-    password: string;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column({unique:true})
-    email:string;
+  @Column({ length: 10, unique: true })
+  phone_number: string;
 
-    @Column({length:10,unique:true})
-    phone_number:string;
+  @Column({ type: "enum", enum: UserRole, default: UserRole.USER })
+  role: UserRole;
 
-    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
-    role: UserRole;
+  @Column({ nullable: true })
+  place: string;
 
-    @Column({nullable: true})
-    place: string;
-
-    @OneToMany(() => SalesEntry, salesEntry =>salesEntry.soldby )
-    salesEntry:SalesEntry[];
-
+  @OneToMany(() => Sales, (sales) => sales.soldby)
+  sales: Sales[];
 }

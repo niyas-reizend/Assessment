@@ -12,13 +12,10 @@ export class ProductEntry {
     @Column('decimal',{precision:10,scale:2})
     purchasePrice:number;
 
-    @Column()
-    currentStock:number;
-
     @CreateDateColumn()
     addedAt:Date;
 
-    @ManyToOne(() => Product, product => product.productEntry)
+    @ManyToOne(() => Product, product => product.productEntry,{onDelete:'CASCADE'})
     @JoinColumn()
     product:Product;
 

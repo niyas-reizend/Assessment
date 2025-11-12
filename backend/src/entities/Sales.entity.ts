@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Product } from "./Product.entity";
 import { User } from "./User.entity";
+import { Billitem } from "./Billitem.entity";
 
 @Entity()
-export class SalesEntry {
+export class Sales {
     @PrimaryGeneratedColumn('uuid')
     sales_id:string;
 
@@ -19,14 +20,11 @@ export class SalesEntry {
     @CreateDateColumn()
     soldAt:Date;
 
-    @ManyToOne(() => Product, product => product.salesEntry)
-    @JoinColumn()
-    product:Product;
-
-    @ManyToOne(() => User, user => user.salesEntry )
+    @ManyToOne(() => User, user => user.sales )
     @JoinColumn()
     soldby:User;
 
-    
+    @OneToMany(() => Billitem, billitem => billitem.sales)
+    billitem:Billitem[];
 
 }

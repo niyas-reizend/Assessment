@@ -1,5 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProductEntry } from "./ProductEntry.entity";
+import { Sales } from "./Sales.entity";
+import { Billitem } from "./Billitem.entity";
 
 
 @Entity()
@@ -10,7 +12,7 @@ export class Product {
     @Column()
     name:string;
 
-    @Column()
+    @Column({unique:true})
     sku:string;
 
     @Column('decimal',{precision:10,scale:2})
@@ -19,7 +21,7 @@ export class Product {
     @Column()
     currentStock:number;
     
-    @Column()
+    @Column('decimal',{precision:10,scale:2})
     taxPercentage:number;
 
     @CreateDateColumn()
@@ -28,7 +30,8 @@ export class Product {
     @OneToMany(() => ProductEntry, productEntry => productEntry.product)
     productEntry:ProductEntry[];
 
-    @OneToMany(() => ProductEntry, salesEntry => salesEntry.product)
-    salesEntry:ProductEntry[];
+
+    @OneToMany(() => Billitem, billitem => billitem.product)
+    billitem:Billitem[];
 
 }

@@ -8,7 +8,8 @@ import { generateAccessToken } from "../utils/token";
 
 export const registerUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const {phone_number, password, name,email, role} = req.body;
+
+        const {phone_number, password, name, email, role} = req.body;
 
         const user = await findUserByPhone(phone_number);
         if(user){
