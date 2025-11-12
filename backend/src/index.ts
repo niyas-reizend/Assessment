@@ -6,6 +6,7 @@ const PORT = 4000;
 dataSource.initialize()
 .then(() => {
     app.listen(PORT, () => {
+        console.log(" DB connected")
         console.log(`Server running at http://localhost:${PORT}`);
     });
 })
