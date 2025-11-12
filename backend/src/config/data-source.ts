@@ -6,6 +6,7 @@ import { User } from "../entities/User.entity";
 import { Product } from "../entities/Product.entity";
 import { ProductEntry } from "../entities/ProductEntry.entity";
 import { Sales} from "../entities/Sales.entity";
+import { Billitem } from "../entities/Billitem.entity";
 
 
 export const dataSource = new DataSource({
@@ -19,7 +20,7 @@ export const dataSource = new DataSource({
   logging: false,
 
 
-  entities: [User, Product, ProductEntry, Sales],
+  entities: [User, Product, ProductEntry, Sales,Billitem],
 });
 
 
