@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../service/allApi"
+import { deleteProduct, getProducts } from "../service/allApi"
+import {toast} from "react-toastify";
 
 const ProductPage = () => {
     const [products,setProducts] = useState([])
@@ -16,6 +17,17 @@ const ProductPage = () => {
         }
     }
 
+    const handleDelete = async(id:number) => {
+      try{
+        const res = await  deleteProduct(id)
+        toast.success("Product deleted")
+        fetchProducts();
+        
+      }catch(error){
+        console.log(error);
+      }
+    }
+
     useEffect(() => {
         fetchProducts();
 
@@ -27,8 +39,6 @@ const ProductPage = () => {
 
     <div className="flex justify-between mb-3">
     <h1 className="text-3xl mb-3">Products Page</h1>
-    <button className=" text-lg border border-black p-2 rounded-lg hover:bg-gray-200 active:bg-gray-300"> ADD PRODUCT</button>
-
     </div>
     
       {/* product list  Table */}
@@ -54,16 +64,14 @@ const ProductPage = () => {
                 <td className="px-6 py-4">{p.sku}</td>
                 <td className="px-6 py-4">{p.currentStock}</td>
                 <td className="px-6 py-4">{p.price}</td>
-                <td className="px-6 py-4"><button className="border p-1 rounded-lg hover:bg-red-500 hover:text-white">Delete</button></td>
-                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-blue-500 hover:text-white">Update</button></td>
-                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-green-600 hover:text-white">Add Stock</button></td>
+                <td className="px-6 py-4"><button className="border p-1 rounded-lg hover:bg-red-500 hover:text-white active:bg-red-700" onClick={()=>handleDelete(p.product_id)}>Delete</button></td>
+                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-blue-500 hover:text-white active:bg-blue-600">Update</button></td>
+                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-green-600 hover:text-white active-bg-green-700">Add Stock</button></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-
     </div>
    
     </>
