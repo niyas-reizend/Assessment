@@ -12,6 +12,10 @@ const Navbar = () => {
     navigate('/')  
   }
 
+    const handleSaleClick = () =>{
+    navigate('/sales')  
+  }
+
   return (
         <nav className="h-16 flex justify-between items-center relative  px-6 bg-zinc-900 text-white">
       {/* Menu button for mobile */}
@@ -26,6 +30,7 @@ const Navbar = () => {
       <div className="flex gap-4">
         <button className="hover:text-gray-400 font-bold mr-10 ctext-lg "  onClick={handleAddProductClick}>Add Product</button>
         <button className="hover:text-gray-400 font-bold mr-10 ctext-lg "  onClick={handleProductClick}>Product Page</button>
+        <button className="hover:text-gray-400 font-bold mr-10 ctext-lg "  onClick={handleSaleClick}>Sale Page</button>
       </div>
     </nav>
     

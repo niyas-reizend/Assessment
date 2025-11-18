@@ -8,23 +8,21 @@ export class Sales {
     @PrimaryGeneratedColumn('uuid')
     sales_id:string;
 
-    @Column()
-    quantity:number;
+    @Column('decimal',{precision:10,scale:2})
+    totalSalesPrice:number;
 
     @Column('decimal',{precision:10,scale:2})
-    salesPrice:number;
+    totalTax:number;
 
-    @Column()
+    @Column('decimal',{precision:10,scale:2})
     discount:number;
+
+    @Column('decimal',{precision:10,scale:2})
+    amountToPay:number;
 
     @CreateDateColumn()
     soldAt:Date;
 
-    @ManyToOne(() => User, user => user.sales )
-    @JoinColumn()
-    soldby:User;
-
-    @OneToMany(() => Billitem, billitem => billitem.sales)
+    @OneToMany(() => Billitem, billitem => billitem.sales ,{cascade:true})
     billitem:Billitem[];
-
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { deleteProduct, getProducts } from "../service/allApi"
 import {toast} from "react-toastify";
+import { AddStockModal } from "@/components/others/AddStockModal";
+import { UpdateModal } from "@/components/others/UpdateModal";
 
 const ProductPage = () => {
     const [products,setProducts] = useState([])
@@ -39,6 +41,7 @@ const ProductPage = () => {
 
     <div className="flex justify-between mb-3">
     <h1 className="text-3xl mb-3">Products Page</h1>
+    <h1></h1>
     </div>
     
       {/* product list  Table */}
@@ -65,8 +68,8 @@ const ProductPage = () => {
                 <td className="px-6 py-4">{p.currentStock}</td>
                 <td className="px-6 py-4">{p.price}</td>
                 <td className="px-6 py-4"><button className="border p-1 rounded-lg hover:bg-red-500 hover:text-white active:bg-red-700" onClick={()=>handleDelete(p.product_id)}>Delete</button></td>
-                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-blue-500 hover:text-white active:bg-blue-600">Update</button></td>
-                <td className="px-6 py-4"><button className="border p-1 rounded-lg  hover:bg-green-600 hover:text-white active-bg-green-700">Add Stock</button></td>
+                <td className="px-6 py-4"> <UpdateModal productId ={p.product_id} productFetch={fetchProducts}/></td>
+                <td className="px-6 py-4"><AddStockModal productId ={p.product_id} productFetch={fetchProducts}/></td>
               </tr>
             ))}
           </tbody>

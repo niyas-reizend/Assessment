@@ -11,8 +11,12 @@ export class Billitem {
     @Column()
     quantity:number;
 
+    @Column('decimal',{precision:10,scale:2})
+    salePrice:number;
+
+
     @ManyToOne(() => Product , product => product.billitem)
-    @JoinColumn()
+    @JoinColumn({name:"productId"})
     product:Product;
 
     @ManyToOne(() => Sales, sales => sales.billitem)

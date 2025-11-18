@@ -29,7 +29,4 @@ export class User {
 
   @Column({ nullable: true })
   place: string;
-
-  @OneToMany(() => Sales, (sales) => sales.soldby)
-  sales: Sales[];
 }
