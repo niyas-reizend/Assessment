@@ -114,7 +114,6 @@ export const fetchSale = async (
       order: { soldAt: "DESC" },
     });
 
-    console.log("fetchhhhhhhhhhhhhhhh", result);
 
     res.status(200).json({
       success: true,

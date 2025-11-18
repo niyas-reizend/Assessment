@@ -37,7 +37,7 @@ export function SaleDetailsModal({ sale }:any) {
               className="flex justify-between p-2 border  "
             >
               <span>{item.salePrice}</span>
-              <span>Qty: {item.quantity}</span>
+              <span>quantity: {item.quantity}</span>
             </div>
           ))}
         </div>

@@ -177,7 +177,7 @@ export function CreateSaleModal({ products }: any) {
                         <span className="font-medium">{item.product.name}</span>
                         <span className="text-sm text-gray-600 ml-2">: {item.quantity}</span>
                       </div>
-                      <span>${item.salePrice}</span>
+                      <span>Rs.{item.salePrice}</span>
                     </div>
                   ))}
                 </div>
@@ -186,21 +186,21 @@ export function CreateSaleModal({ products }: any) {
               <div className="border-t pt-3 space-y-1">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span>${createdSale.totalSalesPrice}</span>
+                  <span>Rs.{createdSale.totalSalesPrice}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tax:</span>
-                  <span>${createdSale.totalTax}</span>
+                  <span>RS.{createdSale.totalTax}</span>
                 </div>
                 {createdSale.discount > 0 && (
                   <div className="flex justify-between">
                     <span>Discount:</span>
-                    <span>-${createdSale.discount}</span>
+                    <span>-Rs.{createdSale.discount}</span>
                   </div>
                 )}
                 <div className="flex justify-between font-semibold border-t pt-2">
                   <span>Total Amount:</span>
-                  <span>${createdSale.amountToPay}</span>
+                  <span>Rs.{createdSale.amountToPay}</span>
                 </div>
               </div>
 
